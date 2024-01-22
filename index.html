@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LearnHTMX</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      img{
+        width: 100%;
+      }
+    </style>
+    <script
+      defer
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center my-4">Learn HTMX</h1>
+      <form hx-post="./api.php?action=create_post" hx-target=".posts" hx-swap="beforeend" hx-encoding="multipart/form-data">
+        <input type="text" class="form-control mb-3" name="title"/>
+        <textarea class="form-control mb-3" rows="3" name="content"></textarea>
+        <input type="file" name="file" class="form-control mb-3">
+        <button class="btn btn-primary">Create post</button>
+      </form>
+      <div class="row align-items-center mt-5 posts" hx-get="./api.php?action=get_posts" hx-trigger="load once, update_post, delete_post">
+
+      </div>
+    </div>
+  </body>
+</html>
